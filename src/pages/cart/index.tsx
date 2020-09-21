@@ -3,7 +3,10 @@ import React from 'react';
 import Header from '../../components/header';
 import Banner from '../../components/banner';
 
-import { ContentContainer, PageContainer } from './styles';
+import ProductList from '../../components/productList';
+import Total from '../../components/total';
+
+import { PageContainer, Container, CartContainer } from './styles';
 
 const Cart: React.FC = () => {
   return (
@@ -11,9 +14,14 @@ const Cart: React.FC = () => {
       <PageContainer>
         <Header />
         <Banner />
-        <ContentContainer>
+        <Container>
           <h1>Carrinho</h1>
-        </ContentContainer>
+
+          <CartContainer>
+            <ProductList />
+            <Total />
+          </CartContainer>
+        </Container>
       </PageContainer>
     </>
   );
