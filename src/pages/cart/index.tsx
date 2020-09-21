@@ -2,7 +2,8 @@ import React from 'react';
 
 import { FaWhatsapp } from 'react-icons/fa';
 import { MdPerson, MdLocationOn } from 'react-icons/md';
-import { PageContainer, Header, LoginHeader } from './styles';
+import logoImage from '../../assets/logo.png';
+import { PageContainer, Header, LoginHeader, Logo } from './styles';
 
 const Cart: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const Cart: React.FC = () => {
       <Header>
         <LoginHeader>
           <span>
-            <FaWhatsapp size={20} /> 9999-9999
+            <FaWhatsapp size={20} /> (47) 9999-9999
           </span>
           <div>
             <span>
@@ -21,6 +22,10 @@ const Cart: React.FC = () => {
             </span>
           </div>
         </LoginHeader>
+
+        <Logo>
+          <img src={logoImage} alt="Logo Sua Marca" />
+        </Logo>
       </Header>
     </PageContainer>
   );

@@ -45,3 +45,12 @@ export const LoginHeader = styled.div`
     }
   }
 `;
+
+export const Logo = styled.div`
+  height: 55px;
+  margin: 10px 0 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
