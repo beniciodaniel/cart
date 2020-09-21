@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface NavLinkProps {
+  hasIcon?: boolean;
+}
 
 export const PageContainer = styled.div`
   height: 100vh;
@@ -54,3 +58,42 @@ export const Logo = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const NavContainer = styled.div`
+  height: 50px;
+  margin: 10px 0 10px;
+
+  display: flex;
+  align-items: center;
+`;
+
+export const NavSpan = styled.span`
+  display: flex;
+  align-items: center;
+
+  a + a {
+    margin-left: 32px;
+  }
+`;
+
+export const NavLink = styled.a<NavLinkProps>`
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: bold;
+  line-height: 25px;
+  letter-spacing: 0.1px;
+  color: #212121;
+
+  ${props =>
+    props.hasIcon &&
+    css`
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 6px;
+      }
+    `}
+`;
+
+export const SearchContainer = styled.form``;

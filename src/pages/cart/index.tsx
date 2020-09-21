@@ -1,9 +1,17 @@
 import React from 'react';
 
 import { FaWhatsapp } from 'react-icons/fa';
-import { MdPerson, MdLocationOn } from 'react-icons/md';
+import { MdPerson, MdLocationOn, MdMenu } from 'react-icons/md';
 import logoImage from '../../assets/logo.png';
-import { PageContainer, Header, LoginHeader, Logo } from './styles';
+import {
+  PageContainer,
+  Header,
+  LoginHeader,
+  Logo,
+  NavContainer,
+  NavSpan,
+  NavLink,
+} from './styles';
 
 const Cart: React.FC = () => {
   return (
@@ -26,6 +34,15 @@ const Cart: React.FC = () => {
         <Logo>
           <img src={logoImage} alt="Logo Sua Marca" />
         </Logo>
+
+        <NavContainer>
+          <NavSpan>
+            <NavLink hasIcon href="/setores">
+              <MdMenu size={24} /> SETORES
+            </NavLink>
+            <NavLink href="/ofertas">OFERTAS</NavLink>
+          </NavSpan>
+        </NavContainer>
       </Header>
     </PageContainer>
   );
