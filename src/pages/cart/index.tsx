@@ -1,7 +1,13 @@
 import React from 'react';
 
 import { FaWhatsapp } from 'react-icons/fa';
-import { MdPerson, MdLocationOn, MdMenu } from 'react-icons/md';
+import {
+  MdPerson,
+  MdLocationOn,
+  MdMenu,
+  MdShoppingCart,
+  MdSearch,
+} from 'react-icons/md';
 import logoImage from '../../assets/logo.png';
 import {
   PageContainer,
@@ -11,6 +17,7 @@ import {
   NavContainer,
   NavSpan,
   NavLink,
+  FormContainer,
 } from './styles';
 
 const Cart: React.FC = () => {
@@ -42,6 +49,17 @@ const Cart: React.FC = () => {
             </NavLink>
             <NavLink href="/ofertas">OFERTAS</NavLink>
           </NavSpan>
+
+          <FormContainer>
+            <input type="text" placeholder="O que você procura?" />
+            <button>
+              <MdSearch />
+            </button>
+          </FormContainer>
+
+          <NavLink hasIcon href="/checkout">
+            <MdShoppingCart color="#e53935" /> R$ 6666
+          </NavLink>
         </NavContainer>
       </Header>
     </PageContainer>

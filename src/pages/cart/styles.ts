@@ -65,6 +65,7 @@ export const NavContainer = styled.div`
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const NavSpan = styled.span`
@@ -92,8 +93,40 @@ export const NavLink = styled.a<NavLinkProps>`
 
       svg {
         margin-right: 6px;
+        height: 24px;
+        width: 24px;
       }
     `}
 `;
 
-export const SearchContainer = styled.form``;
+export const FormContainer = styled.form`
+  display: flex;
+  max-width: 600px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #212121;
+
+  input {
+    width: 400px;
+    line-height: 20px;
+    font-size: 14px;
+    border: 0;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+
+    &::placeholder {
+      color: #bdbdbd;
+    }
+  }
+
+  button {
+    background: transparent;
+    border: 0;
+    outline: 0;
+  }
+
+  svg {
+    height: 24px;
+    width: 24px;
+  }
+`;
