@@ -10,7 +10,7 @@ export const PageContainer = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 1200px;
+  max-width: 1200px;
   height: 100px;
 
   padding: 30px 50px 40px 50px;
@@ -31,4 +31,9 @@ export const Container = styled.div`
 
 export const CartContainer = styled.div`
   display: flex;
+  flex: 1;
+
+  > div:first-child {
+    margin-right: 70px;
+  }
 `;
