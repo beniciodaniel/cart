@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../../components/header';
 import Banner from '../../components/banner';
 
-import { PageContainer } from './styles';
+import { ContentContainer, PageContainer } from './styles';
 
 const Cart: React.FC = () => {
   return (
@@ -11,6 +11,9 @@ const Cart: React.FC = () => {
       <PageContainer>
         <Header />
         <Banner />
+        <ContentContainer>
+          <h1>Carrinho</h1>
+        </ContentContainer>
       </PageContainer>
     </>
   );
