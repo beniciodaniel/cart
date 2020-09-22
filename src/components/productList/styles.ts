@@ -18,11 +18,19 @@ export const ProductContainer = styled.div`
     width: 90px;
     margin-right: 40px;
   }
+
+  &:hover {
+    background: #f5f5f5;
+  }
 `;
 
 export const DescriptionContainer = styled.div`
-  max-width: 280px;
+  width: 180px;
   margin-right: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   p:first-child {
     font-size: 14px;
@@ -43,16 +51,20 @@ export const InputContainer = styled.div`
 
   svg {
     color: #e53935;
+    margin-right: 4px;
   }
 
   input {
     border: 0;
     font-size: 12px;
+    background: transparent;
+    font-style: italic;
 
     &::placeholder {
       font-size: 12px;
       font-weight: 500;
       line-height: 20px;
+      font-style: normal;
       color: #e53935;
     }
   }
@@ -66,6 +78,7 @@ export const IncrementDecrementContainer = styled.div`
 
   div {
     height: 30px;
+    background: #fff;
 
     border: solid 1px #bdbdbd;
     border-radius: 4px;
