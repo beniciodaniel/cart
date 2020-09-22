@@ -1,6 +1,8 @@
 import React, { useRef, useCallback } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import * as Yup from 'yup';
+import getValidationErrors from '../../utils/getValidationErrors';
 
 import Header from '../../components/header';
 import Banner from '../../components/banner';
@@ -21,8 +23,39 @@ interface FormData {
 const Checkout: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback((formData: FormData) => {
+  const handleSubmit = useCallback(async (formData: FormData) => {
     console.log(formData);
+
+    try {
+      formRef.current?.setErrors({});
+
+      const schema = Yup.object().shape({
+        enderecoRua: Yup.string().required('Endereço obrigatório'),
+        enderecoNumero: Yup.string().required('Número obrigatório'),
+        enderecoBairro: Yup.string().required('Bairro obrigatório'),
+        cartaoNumero: Yup.number()
+          .typeError('Números obrigatórios')
+          .required('Números obrigatórios')
+          .positive('Devem ser números positivos')
+          .integer('Números inteiros'),
+        cartaoCVC: Yup.number()
+          .typeError('Números obrigatórios')
+          .required('Números obrigatórios')
+          .positive('Devem ser números positivos')
+          .integer('Números inteiros'),
+      });
+
+      await schema.validate(formData, {
+        abortEarly: false,
+      });
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(error);
+        // console.log(errors);
+
+        formRef.current?.setErrors(errors);
+      }
+    }
   }, []);
 
   return (

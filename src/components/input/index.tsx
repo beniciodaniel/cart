@@ -41,7 +41,7 @@ const Input: React.FC<InputProps> = ({ name, ...restOfprops }) => {
   }, []);
 
   return (
-    <Container isFocused={isFocused} isFilled={isFilled}>
+    <Container isFocused={isFocused} isFilled={isFilled} isErrored={!!error}>
       <input
         ref={inputRef}
         defaultValue={defaultValue}
@@ -49,6 +49,7 @@ const Input: React.FC<InputProps> = ({ name, ...restOfprops }) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
       />
+      {error && <span>{error}</span>}
     </Container>
   );
 };
