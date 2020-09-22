@@ -5,7 +5,7 @@ import Checkout from '../pages/checkout';
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route path="/" component={Cart} />
+    <Route exact path="/" component={Cart} />
     <Route path="/checkout" component={Checkout} />
   </Switch>
 );
