@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const TotalContainer = styled.div`
   border: 1px solid #e0e0e0;
@@ -67,5 +68,11 @@ export const CheckoutContainer = styled.div`
     border: 0;
     font-size: 16px;
     color: #fff;
+
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: ${shade(0.2, '#e53935')};
+    }
   }
 `;
