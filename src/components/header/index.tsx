@@ -62,7 +62,7 @@ const Header: React.FC = () => {
             </button>
           </FormContainer>
 
-          <NavLink hasIcon href="/checkout">
+          <NavLink hasIcon href="/">
             <MdShoppingCart color="#e53935" /> {formatValue(total)}
           </NavLink>
         </NavContainer>

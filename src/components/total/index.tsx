@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useHistory } from 'react-router-dom';
 import formatValue from '../../utils/formatValue';
 import { useCart } from '../../context/CartContext';
 
@@ -12,6 +13,11 @@ import {
 
 const Total: React.FC = () => {
   const { total, products } = useCart();
+  const history = useHistory();
+
+  function pushToCheckoutPage() {
+    history.push('/checkout');
+  }
 
   return (
     <TotalContainer>
@@ -40,7 +46,7 @@ const Total: React.FC = () => {
       </ShowTotalContainer>
 
       <CheckoutContainer>
-        <button>Finalizar a compra</button>
+        <button onClick={pushToCheckoutPage}>Finalizar a compra</button>
       </CheckoutContainer>
     </TotalContainer>
   );
