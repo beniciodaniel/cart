@@ -49,10 +49,10 @@ const Header: React.FC = () => {
 
         <NavContainer>
           <NavSpan>
-            <NavLink hasIcon href="/setores">
+            <NavLink hasIcon to="/setores">
               <MdMenu size={24} /> SETORES
             </NavLink>
-            <NavLink href="/ofertas">OFERTAS</NavLink>
+            <NavLink to="/ofertas">OFERTAS</NavLink>
           </NavSpan>
 
           <FormContainer>
@@ -62,7 +62,7 @@ const Header: React.FC = () => {
             </button>
           </FormContainer>
 
-          <NavLink hasIcon href="/">
+          <NavLink hasIcon to="/">
             <MdShoppingCart color="#e53935" /> {formatValue(total)}
           </NavLink>
         </NavContainer>
