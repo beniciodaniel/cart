@@ -34,12 +34,12 @@ const Checkout: React.FC = () => {
         enderecoNumero: Yup.string().required('Número obrigatório'),
         enderecoBairro: Yup.string().required('Bairro obrigatório'),
         cartaoNumero: Yup.number()
-          .typeError('Números obrigatórios')
+          .typeError('Somente números')
           .required('Números obrigatórios')
           .positive('Devem ser números positivos')
           .integer('Números inteiros'),
         cartaoCVC: Yup.number()
-          .typeError('Números obrigatórios')
+          .typeError('Somente números')
           .required('Números obrigatórios')
           .positive('Devem ser números positivos')
           .integer('Números inteiros'),
