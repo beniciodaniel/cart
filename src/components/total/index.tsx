@@ -12,7 +12,7 @@ import {
 } from './styles';
 
 const Total: React.FC = () => {
-  const { total, itemsQuantity } = useCart();
+  const { total, totalItemsQuantity, discount, totalWithDiscount } = useCart();
   const history = useHistory();
 
   function pushToCheckoutPage() {
@@ -28,7 +28,7 @@ const Total: React.FC = () => {
       <DiscountContainer>
         <span>
           <p>Itens</p>
-          <p>{itemsQuantity}</p>
+          <p>{totalItemsQuantity}</p>
         </span>
         <span>
           <p>Total em produtos</p>
@@ -36,13 +36,17 @@ const Total: React.FC = () => {
         </span>
         <span>
           <p>Descontos</p>
-          <p>R$ 0,00</p>
+          <p>{formatValue(discount)}</p>
         </span>
       </DiscountContainer>
 
       <ShowTotalContainer>
         <strong>Total</strong>
-        <strong>{formatValue(total)}</strong>
+        <strong>
+          {totalWithDiscount
+            ? formatValue(totalWithDiscount)
+            : formatValue(total)}
+        </strong>
       </ShowTotalContainer>
 
       <CheckoutContainer>

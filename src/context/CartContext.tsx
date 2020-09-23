@@ -18,6 +18,12 @@ interface Product {
   observacao?: string;
 }
 
+interface DiscountPolicy {
+  tipo: string;
+  valor: number;
+  desconto_percentual: number;
+}
+
 interface CartContextData {
   products: Product[] | null;
   incrementProductQuantity(id: number): void;
@@ -25,7 +31,9 @@ interface CartContextData {
   removeProduct(id: number): void;
   addNote(id: number, note: string): void;
   total: number;
-  itemsQuantity: number;
+  totalItemsQuantity: number;
+  discount: number;
+  totalWithDiscount: number;
 }
 
 const CartContext = createContext<CartContextData>({} as CartContextData);
@@ -33,17 +41,45 @@ const CartContext = createContext<CartContextData>({} as CartContextData);
 const CartProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
-  const [itemsQuantity, setItemsQuantity] = useState(0);
+  const [totalItemsQuantity, setItemsQuantity] = useState(0);
+  const [minimumQuantityPolicy, setMinimumQuantityPolicy] = useState<
+    DiscountPolicy
+  >({} as DiscountPolicy);
+  const [minimumValuepolicy, setMinimumValuepolicy] = useState<DiscountPolicy>(
+    {} as DiscountPolicy,
+  );
+  const [discount, setDiscount] = useState(0);
+  const [totalWithDiscount, setTotalWithDiscount] = useState(0);
 
   useEffect(() => {
     async function loadData() {
-      const response = await api.get('/');
-      console.log(response.data);
-      setProducts(response.data);
+      const responseGetProducts = await api.get('/carrinho');
+      const responseGetDiscountPolicies = await api.get<DiscountPolicy[]>(
+        '/politicas-comerciais',
+      );
+      setProducts(responseGetProducts.data);
+      responseGetDiscountPolicies.data.map(policy =>
+        policy.tipo === 'valor_minimo'
+          ? setMinimumValuepolicy(policy)
+          : setMinimumQuantityPolicy(policy),
+      );
     }
 
     loadData();
   }, []);
+
+  useEffect(() => {
+    if (total >= minimumValuepolicy.valor) {
+      setDiscount((total * minimumValuepolicy.desconto_percentual) / 100);
+      setTotalWithDiscount(total - discount);
+    }
+  }, [
+    total,
+    totalItemsQuantity,
+    minimumValuepolicy.valor,
+    minimumValuepolicy.desconto_percentual,
+    discount,
+  ]);
 
   useEffect(() => {
     const sum = products.reduce((accumulator, product): number => {
@@ -122,7 +158,9 @@ const CartProvider: React.FC = ({ children }) => {
       removeProduct,
       addNote,
       total,
-      itemsQuantity,
+      totalItemsQuantity,
+      discount,
+      totalWithDiscount,
     }),
     [
       products,
@@ -131,7 +169,9 @@ const CartProvider: React.FC = ({ children }) => {
       removeProduct,
       addNote,
       total,
-      itemsQuantity,
+      totalItemsQuantity,
+      discount,
+      totalWithDiscount,
     ],
   );
 

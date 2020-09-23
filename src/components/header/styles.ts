@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-interface NavLinkProps {
+interface NavSpanProps {
   hasIcon?: boolean;
 }
 
@@ -84,9 +84,17 @@ export const NavSpan = styled.span`
   }
 `;
 
-export const NavLink = styled(Link)<NavLinkProps>`
+export const NavLink = styled(Link)`
   font-size: 14px;
   text-decoration: none;
+  font-weight: bold;
+  line-height: 25px;
+  letter-spacing: 0.1px;
+  color: #212121;
+`;
+
+export const NavLinkSpan = styled.span<NavSpanProps>`
+  font-size: 14px;
   font-weight: bold;
   line-height: 25px;
   letter-spacing: 0.1px;

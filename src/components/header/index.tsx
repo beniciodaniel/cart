@@ -19,12 +19,13 @@ import {
   NavContainer,
   NavSpan,
   NavLink,
+  NavLinkSpan,
   FormContainer,
   Container,
 } from './styles';
 
 const Header: React.FC = () => {
-  const { total } = useCart();
+  const { total, totalWithDiscount } = useCart();
 
   return (
     <HeaderContainer>
@@ -49,8 +50,10 @@ const Header: React.FC = () => {
 
         <NavContainer>
           <NavSpan>
-            <NavLink hasIcon to="/">
-              <MdMenu size={24} /> SETORES
+            <NavLink to="/">
+              <NavLinkSpan hasIcon>
+                <MdMenu size={24} /> SETORES
+              </NavLinkSpan>
             </NavLink>
             <NavLink to="/">OFERTAS</NavLink>
           </NavSpan>
@@ -62,8 +65,13 @@ const Header: React.FC = () => {
             </button>
           </FormContainer>
 
-          <NavLink hasIcon to="/">
-            <MdShoppingCart color="#e53935" /> {formatValue(total)}
+          <NavLink to="/">
+            <NavLinkSpan hasIcon>
+              <MdShoppingCart color="#e53935" />{' '}
+              {totalWithDiscount
+                ? formatValue(totalWithDiscount)
+                : formatValue(total)}
+            </NavLinkSpan>
           </NavLink>
         </NavContainer>
       </Container>
