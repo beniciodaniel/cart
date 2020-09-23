@@ -81,7 +81,12 @@ const CartProvider: React.FC = ({ children }) => {
           ? { ...product, quantidade: product.quantidade - 1 }
           : product,
       );
-      setProducts(newProducts);
+
+      const productsWithQuantity = newProducts.filter(
+        product => product.quantidade > 0,
+      );
+
+      setProducts(productsWithQuantity);
     },
     [products],
   );
