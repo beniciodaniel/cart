@@ -3,6 +3,7 @@ import React from 'react';
 import { MdChatBubbleOutline, MdDelete } from 'react-icons/md';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import { useCart } from '../../context/CartContext';
+import formatValue from '../../utils/formatValue';
 
 import {
   ProductListContainer,
@@ -63,7 +64,7 @@ const ProductList: React.FC = () => {
           </IncrementDecrementContainer>
 
           <SubtotalContainer>
-            <p>R$ {product.valor_unitario * product.quantidade}</p>
+            <p>{formatValue(product.valor_unitario * product.quantidade)}</p>
             <button type="button" onClick={() => removeProduct(product.id)}>
               <MdDelete size={20} />
             </button>

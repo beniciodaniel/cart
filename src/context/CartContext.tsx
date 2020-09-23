@@ -24,12 +24,14 @@ interface CartContextData {
   decrementProductQuantity(id: number): void;
   removeProduct(id: number): void;
   addNote(id: number, note: string): void;
+  total: number;
 }
 
 const CartContext = createContext<CartContextData>({} as CartContextData);
 
 const CartProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     async function loadData() {
@@ -41,6 +43,17 @@ const CartProvider: React.FC = ({ children }) => {
     loadData();
   }, []);
 
+  useEffect(() => {
+    const sum = products.reduce((accumulator, product): number => {
+      if (product.quantidade > 0) {
+        return accumulator + product.quantidade * product.valor_unitario;
+      }
+      return accumulator;
+    }, 0);
+
+    setTotal(sum);
+  }, [products]);
+
   const incrementProductQuantity = useCallback(
     (id: number) => {
       const newProducts = products?.map(product =>
@@ -48,6 +61,14 @@ const CartProvider: React.FC = ({ children }) => {
           ? { ...product, quantidade: product.quantidade + 1 }
           : product,
       );
+      setProducts(newProducts);
+    },
+    [products],
+  );
+
+  const removeProduct = useCallback(
+    (id: number) => {
+      const newProducts = products.filter(product => product.id !== id);
       setProducts(newProducts);
     },
     [products],
@@ -65,21 +86,12 @@ const CartProvider: React.FC = ({ children }) => {
     [products],
   );
 
-  const removeProduct = useCallback(
-    (id: number) => {
-      const newProducts = products.filter(product => product.id !== id);
-      setProducts(newProducts);
-    },
-    [products],
-  );
-
   const addNote = useCallback(
     (id: number, note: string) => {
       const newProducts = products.map(product =>
         product.id === id ? { ...product, observacao: note } : product,
       );
       setProducts(newProducts);
-      console.log(newProducts, 'add note');
     },
     [products],
   );
@@ -91,6 +103,7 @@ const CartProvider: React.FC = ({ children }) => {
       decrementProductQuantity,
       removeProduct,
       addNote,
+      total,
     }),
     [
       products,
@@ -98,6 +111,7 @@ const CartProvider: React.FC = ({ children }) => {
       decrementProductQuantity,
       removeProduct,
       addNote,
+      total,
     ],
   );
 

@@ -1,5 +1,8 @@
 import React from 'react';
 
+import formatValue from '../../utils/formatValue';
+import { useCart } from '../../context/CartContext';
+
 import {
   TotalContainer,
   DiscountContainer,
@@ -8,6 +11,8 @@ import {
 } from './styles';
 
 const Total: React.FC = () => {
+  const { total, products } = useCart();
+
   return (
     <TotalContainer>
       <div>
@@ -17,11 +22,11 @@ const Total: React.FC = () => {
       <DiscountContainer>
         <span>
           <p>Itens</p>
-          <p>5</p>
+          <p>{products?.length}</p>
         </span>
         <span>
           <p>Total em produtos</p>
-          <p>R$ 62,50</p>
+          <p>{formatValue(total)}</p>
         </span>
         <span>
           <p>Descontos</p>
@@ -31,7 +36,7 @@ const Total: React.FC = () => {
 
       <ShowTotalContainer>
         <strong>Total</strong>
-        <strong>R$ 62,50</strong>
+        <strong>{formatValue(total)}</strong>
       </ShowTotalContainer>
 
       <CheckoutContainer>

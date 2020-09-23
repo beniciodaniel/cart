@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { FaWhatsapp } from 'react-icons/fa';
 import {
   MdPerson,
@@ -9,6 +8,10 @@ import {
   MdSearch,
 } from 'react-icons/md';
 import logoImage from '../../assets/logo.png';
+import formatValue from '../../utils/formatValue';
+
+import { useCart } from '../../context/CartContext';
+
 import {
   Header as HeaderContainer,
   LoginHeader,
@@ -21,6 +24,8 @@ import {
 } from './styles';
 
 const Header: React.FC = () => {
+  const { total } = useCart();
+
   return (
     <HeaderContainer>
       <Container>
@@ -58,7 +63,7 @@ const Header: React.FC = () => {
           </FormContainer>
 
           <NavLink hasIcon href="/checkout">
-            <MdShoppingCart color="#e53935" /> R$ 6666
+            <MdShoppingCart color="#e53935" /> {formatValue(total)}
           </NavLink>
         </NavContainer>
       </Container>
