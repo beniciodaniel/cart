@@ -4,7 +4,7 @@ import { shade } from 'polished';
 export const TotalContainer = styled.div`
   height: 300px;
   border: 1px solid #e0e0e0;
-  width: 320px;
+  min-width: 320px;
 
   > div:first-child {
     height: 50px;

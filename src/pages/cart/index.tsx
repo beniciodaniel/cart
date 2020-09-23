@@ -6,22 +6,30 @@ import Banner from '../../components/banner';
 import ProductList from '../../components/productList';
 import Total from '../../components/total';
 
-import { PageContainer, Container, CartContainer } from './styles';
+import {
+  PageContainer,
+  Container,
+  CartContainer,
+  ContentContainer,
+} from './styles';
 
 const Cart: React.FC = () => {
   return (
     <>
       <PageContainer>
         <Header />
-        <Banner />
-        <Container>
-          <h1>Carrinho</h1>
 
-          <CartContainer>
-            <ProductList />
-            <Total />
-          </CartContainer>
-        </Container>
+        <ContentContainer>
+          <Banner />
+          <Container>
+            <h1>Carrinho</h1>
+
+            <CartContainer>
+              <ProductList />
+              <Total />
+            </CartContainer>
+          </Container>
+        </ContentContainer>
       </PageContainer>
     </>
   );

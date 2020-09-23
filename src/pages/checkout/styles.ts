@@ -9,8 +9,15 @@ export const PageContainer = styled.div`
   /* max-width: 1200px; */
 `;
 
+export const ContentContainer = styled.div`
+  margin-top: 160px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
 export const Container = styled.div`
-  width: 100%;
+  max-width: 1200px;
   height: 100%;
 
   padding: 30px 50px 40px 50px;

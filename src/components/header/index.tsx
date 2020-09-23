@@ -17,48 +17,51 @@ import {
   NavSpan,
   NavLink,
   FormContainer,
+  Container,
 } from './styles';
 
 const Header: React.FC = () => {
   return (
     <HeaderContainer>
-      <LoginHeader>
-        <span>
-          <FaWhatsapp size={20} /> (47) 9999-9999
-        </span>
-        <div>
+      <Container>
+        <LoginHeader>
           <span>
-            <MdPerson size={20} /> Arethusa
+            <FaWhatsapp size={20} /> (47) 9999-9999
           </span>
-          <span>
-            <MdLocationOn size={20} /> Bom Retiro - Joinville, SC
-          </span>
-        </div>
-      </LoginHeader>
+          <div>
+            <span>
+              <MdPerson size={20} /> Arethusa
+            </span>
+            <span>
+              <MdLocationOn size={20} /> Bom Retiro - Joinville, SC
+            </span>
+          </div>
+        </LoginHeader>
 
-      <Logo>
-        <img src={logoImage} alt="Logo Sua Marca" />
-      </Logo>
+        <Logo>
+          <img src={logoImage} alt="Logo Sua Marca" />
+        </Logo>
 
-      <NavContainer>
-        <NavSpan>
-          <NavLink hasIcon href="/setores">
-            <MdMenu size={24} /> SETORES
+        <NavContainer>
+          <NavSpan>
+            <NavLink hasIcon href="/setores">
+              <MdMenu size={24} /> SETORES
+            </NavLink>
+            <NavLink href="/ofertas">OFERTAS</NavLink>
+          </NavSpan>
+
+          <FormContainer>
+            <input type="text" placeholder="O que você procura?" />
+            <button>
+              <MdSearch />
+            </button>
+          </FormContainer>
+
+          <NavLink hasIcon href="/checkout">
+            <MdShoppingCart color="#e53935" /> R$ 6666
           </NavLink>
-          <NavLink href="/ofertas">OFERTAS</NavLink>
-        </NavSpan>
-
-        <FormContainer>
-          <input type="text" placeholder="O que você procura?" />
-          <button>
-            <MdSearch />
-          </button>
-        </FormContainer>
-
-        <NavLink hasIcon href="/checkout">
-          <MdShoppingCart color="#e53935" /> R$ 6666
-        </NavLink>
-      </NavContainer>
+        </NavContainer>
+      </Container>
     </HeaderContainer>
   );
 };

@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useState,
   useCallback,
+  useMemo,
 } from 'react';
 import api from '../services/api';
 
@@ -83,7 +84,7 @@ const CartProvider: React.FC = ({ children }) => {
     [products],
   );
 
-  const value = React.useMemo(
+  const value = useMemo(
     () => ({
       products,
       incrementProductQuantity,

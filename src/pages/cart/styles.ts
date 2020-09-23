@@ -6,14 +6,20 @@ export const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  /* max-width: 1200px; */
+`;
+
+export const ContentContainer = styled.div`
+  margin-top: 160px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const Container = styled.div`
-  max-width: 1200px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
 
-  padding: 30px 50px 40px 50px;
+  padding: 30px 0 40px 0;
 
   display: flex;
   align-items: center;
@@ -31,9 +37,12 @@ export const Container = styled.div`
 
 export const CartContainer = styled.div`
   display: flex;
-  flex: 1;
+  width: 1200px;
+  padding: 0 50px 0 50px;
 
   > div:first-child {
+    width: 100%;
     margin-right: 70px;
+    overflow-y: auto;
   }
 `;

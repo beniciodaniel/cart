@@ -10,7 +10,7 @@ import Banner from '../../components/banner';
 import Input from '../../components/input';
 import Button from '../../components/button';
 
-import { PageContainer, Container } from './styles';
+import { PageContainer, ContentContainer, Container } from './styles';
 
 interface FormData {
   enderecoRua: string;
@@ -61,26 +61,28 @@ const Checkout: React.FC = () => {
   return (
     <PageContainer>
       <Header />
-      <Banner />
-      <Container>
-        <h1>Finalizar Compra</h1>
+      <ContentContainer>
+        <Banner />
+        <Container>
+          <h1>Finalizar Compra</h1>
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="enderecoRua" placeholder="Digite o seu endereço" />
-          <div>
-            <Input name="enderecoNumero" placeholder="Número" />
-            <Input name="enderecoBairro" placeholder="Bairro" />
-          </div>
-          <span>
-            <Input
-              name="cartaoNumero"
-              placeholder="Digite os números do seu cartão"
-            />
-            <Input name="cartaoCVC" placeholder="CVC" />
-          </span>
-          <Button type="submit">Finalizar</Button>
-        </Form>
-      </Container>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <Input name="enderecoRua" placeholder="Digite o seu endereço" />
+            <div>
+              <Input name="enderecoNumero" placeholder="Número" />
+              <Input name="enderecoBairro" placeholder="Bairro" />
+            </div>
+            <span>
+              <Input
+                name="cartaoNumero"
+                placeholder="Digite os números do seu cartão"
+              />
+              <Input name="cartaoCVC" placeholder="CVC" />
+            </span>
+            <Button type="submit">Finalizar</Button>
+          </Form>
+        </Container>
+      </ContentContainer>
     </PageContainer>
   );
 };

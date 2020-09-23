@@ -5,9 +5,23 @@ interface NavLinkProps {
 }
 
 export const Header = styled.header`
+  position: fixed;
+  width: 100vw;
+
+  top: 0;
+  z-index: 99;
+  height: 160px;
+  background: #fff;
+
+  border-bottom: 1px solid #e0e0e0;
+`;
+
+export const Container = styled.div`
   width: 1200px;
+
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 `;
 
 export const LoginHeader = styled.div`

@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 
 export const ProductListContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
 export const ProductContainer = styled.div`
+  width: 100%;
   height: 115px;
   padding: 10px 10px 15px 10px;
 
   display: flex;
+  justify-content: space-between;
 
   border-bottom: 1px solid #e0e0e0;
 
@@ -25,7 +28,7 @@ export const ProductContainer = styled.div`
 `;
 
 export const DescriptionContainer = styled.div`
-  width: 180px;
+  width: 70%;
   margin-right: 20px;
 
   display: flex;
@@ -55,6 +58,7 @@ export const InputContainer = styled.div`
   }
 
   input {
+    width: 100%;
     border: 0;
     font-size: 12px;
     background: transparent;
@@ -71,7 +75,7 @@ export const InputContainer = styled.div`
 `;
 
 export const IncrementDecrementContainer = styled.div`
-  width: 120px;
+  width: 150px;
   margin-right: 20px;
   font-weight: 500;
   line-height: 20px;
@@ -94,7 +98,7 @@ export const IncrementDecrementContainer = styled.div`
 `;
 
 export const SubtotalContainer = styled.div`
-  width: 120px;
+  width: 150px;
   font-weight: 500;
   line-height: 20px;
 
