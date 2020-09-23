@@ -25,6 +25,7 @@ interface CartContextData {
   removeProduct(id: number): void;
   addNote(id: number, note: string): void;
   total: number;
+  itemsQuantity: number;
 }
 
 const CartContext = createContext<CartContextData>({} as CartContextData);
@@ -32,6 +33,7 @@ const CartContext = createContext<CartContextData>({} as CartContextData);
 const CartProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
+  const [itemsQuantity, setItemsQuantity] = useState(0);
 
   useEffect(() => {
     async function loadData() {
@@ -52,6 +54,17 @@ const CartProvider: React.FC = ({ children }) => {
     }, 0);
 
     setTotal(sum);
+  }, [products]);
+
+  useEffect(() => {
+    const itemsQuantity = products.reduce((accumulator, product): number => {
+      if (product.quantidade > 0) {
+        return accumulator + product.quantidade;
+      }
+      return accumulator;
+    }, 0);
+
+    setItemsQuantity(itemsQuantity);
   }, [products]);
 
   const incrementProductQuantity = useCallback(
@@ -109,6 +122,7 @@ const CartProvider: React.FC = ({ children }) => {
       removeProduct,
       addNote,
       total,
+      itemsQuantity,
     }),
     [
       products,
@@ -117,6 +131,7 @@ const CartProvider: React.FC = ({ children }) => {
       removeProduct,
       addNote,
       total,
+      itemsQuantity,
     ],
   );
 
