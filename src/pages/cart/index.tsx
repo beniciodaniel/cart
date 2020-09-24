@@ -6,6 +6,9 @@ import Banner from '../../components/banner';
 import ProductList from '../../components/productList';
 import Total from '../../components/total';
 
+import { useCart } from '../../context/CartContext';
+import Spinner from '../../components/spinningLogo';
+
 import {
   PageContainer,
   Container,
@@ -14,22 +17,28 @@ import {
 } from './styles';
 
 const Cart: React.FC = () => {
+  const { isLoading } = useCart();
+
   return (
     <>
       <PageContainer>
         <Header />
 
-        <ContentContainer>
-          <Banner />
-          <Container>
-            <h1>Carrinho</h1>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <ContentContainer>
+            <Banner />
+            <Container>
+              <h1>Carrinho</h1>
 
-            <CartContainer>
-              <ProductList />
-              <Total />
-            </CartContainer>
-          </Container>
-        </ContentContainer>
+              <CartContainer>
+                <ProductList />
+                <Total />
+              </CartContainer>
+            </Container>
+          </ContentContainer>
+        )}
       </PageContainer>
     </>
   );

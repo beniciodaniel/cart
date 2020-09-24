@@ -34,6 +34,7 @@ interface CartContextData {
   totalItemsQuantity: number;
   discount: number;
   totalWithDiscount: number;
+  isLoading: boolean;
 }
 
 const CartContext = createContext<CartContextData>({} as CartContextData);
@@ -50,6 +51,7 @@ const CartProvider: React.FC = ({ children }) => {
   );
   const [discount, setDiscount] = useState(0);
   const [totalWithDiscount, setTotalWithDiscount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function loadData() {
@@ -63,6 +65,7 @@ const CartProvider: React.FC = ({ children }) => {
           ? setValuepolicy(policy)
           : setQuantityPolicy(policy),
       );
+      setIsLoading(false);
     }
 
     loadData();
@@ -188,6 +191,7 @@ const CartProvider: React.FC = ({ children }) => {
       totalItemsQuantity,
       discount,
       totalWithDiscount,
+      isLoading,
     }),
     [
       products,
@@ -199,6 +203,7 @@ const CartProvider: React.FC = ({ children }) => {
       totalItemsQuantity,
       discount,
       totalWithDiscount,
+      isLoading,
     ],
   );
 
