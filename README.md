@@ -1,44 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 💻 Technical Challenge (Mercos)
+### ReactJS | Typescript | Styled-Components | Context API | Unform | Yup
+This repository was created and its code developed to be presented to the company Mercos. The delivery of this technical challenge is part of the selection process to apply for the position of frontend developer in the company.
 
-## Available Scripts
+## Requirements
 
-In the project directory, you can run:
+- Use API offered by the company to show the items in the cart
+- Use API offered by the company to understand which discount rules should be applied
+- The user can change the quantity of an item
+- User can remove an item from the cart
+- The user can write a note for each item
+- Make the applied discount be calculated in real time, as well as the final value
+- If multiple rules fit the discount, apply only the highest discount rule
+- Implement the final screen requesting address and card number for payment
+- Validate the fields
 
-### `yarn start`
+## API
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**GET** https://5f2c373bffc88500167b8cce.mockapi.io/carrinho
+- This endpoint returns all items that need to be shown on the screen.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**GET** https://5f2c373bffc88500167b8cce.mockapi.io/politicas-comerciais
+- This endpoint returns some discount rules for the order. It is necessary to interpret the rules to show the total value and whether it has a discount or not. There are currently two possible policies: *valor_minimo* and *quantidade_itens_minima*.
 
-### `yarn test`
+**POST** https://5f2c373bffc88500167b8cce.mockapi.io/carrinho
+- This POST should be performed at the end, after the user fill in the card number and address. The format:
+```
+  {
+    "itens": {
+      "id": 1,
+      "quantidade": 2,
+      "observacao": "Por favor, retire a gordura da carne",
+    },
+    "endereco": {
+      "rua": "Rua José",
+      "numero": 1225,
+      "bairro": "Centro",
+    },
+    "cartao": {
+      "numero": "1234 1234 1234 1234",
+      "cvc": "667",
+    },
+  }
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
