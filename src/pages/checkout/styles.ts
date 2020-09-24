@@ -39,7 +39,7 @@ export const Container = styled.div`
     min-width: 350px;
 
     > div + div {
-      margin-top: 15px;
+      margin-top: 25px;
     }
 
     div {
@@ -52,7 +52,7 @@ export const Container = styled.div`
     }
 
     span {
-      margin-top: 15px;
+      margin-top: 25px;
       display: flex;
 
       div:first-child {

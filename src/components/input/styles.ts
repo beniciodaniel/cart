@@ -27,6 +27,16 @@ export const Container = styled.div<ContainerProps>`
     }
   }
 
+  label {
+    z-index: -99;
+    font-size: 0.8rem;
+    color: #bdbdbd;
+    position: absolute;
+    top: 17px;
+    left: 16px;
+    transition: 300ms ease all;
+  }
+
   span {
     position: absolute;
     bottom: 5px;
@@ -46,11 +56,21 @@ export const Container = styled.div<ContainerProps>`
     props.isFilled &&
     css`
       border: 2px solid #35e539;
+
+      label {
+        top: -20px;
+        font-size: 0.8rem;
+      }
     `}
 
     ${props =>
     props.isFocused &&
     css`
       border: 2px solid #35e539;
+
+      label {
+        top: -20px;
+        font-size: 0.8rem;
+      }
     `}
 `;

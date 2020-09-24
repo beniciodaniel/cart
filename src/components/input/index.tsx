@@ -12,9 +12,10 @@ import { Container } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
+  placeholder?: string;
 }
 
-const Input: React.FC<InputProps> = ({ name, ...restOfprops }) => {
+const Input: React.FC<InputProps> = ({ name, placeholder, ...restOfprops }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -49,6 +50,7 @@ const Input: React.FC<InputProps> = ({ name, ...restOfprops }) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
       />
+      <label htmlFor={name}>{placeholder}</label>
       {error && <span>{error}</span>}
     </Container>
   );
