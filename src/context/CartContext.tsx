@@ -65,6 +65,7 @@ const CartProvider: React.FC = ({ children }) => {
           ? setValuepolicy(policy)
           : setQuantityPolicy(policy),
       );
+
       setIsLoading(false);
     }
 
@@ -177,8 +178,6 @@ const CartProvider: React.FC = ({ children }) => {
     },
     [products],
   );
-
-  // const calculatesTotal = useCallback(() => {}, []);
 
   const value = useMemo(
     () => ({
