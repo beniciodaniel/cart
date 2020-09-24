@@ -37,15 +37,15 @@ export const Container = styled.div<ContainerProps>`
   }
 
   ${props =>
-    props.isFilled &&
-    css`
-      border: 2px solid #35e539;
-    `}
-
-  ${props =>
     props.isErrored &&
     css`
       border: 2px solid #e53935;
+    `}
+
+  ${props =>
+    props.isFilled &&
+    css`
+      border: 2px solid #35e539;
     `}
 
     ${props =>
