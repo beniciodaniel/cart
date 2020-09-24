@@ -42,10 +42,10 @@ const CartProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
   const [totalItemsQuantity, setItemsQuantity] = useState(0);
-  const [minimumQuantityPolicy, setMinimumQuantityPolicy] = useState<
-    DiscountPolicy
-  >({} as DiscountPolicy);
-  const [minimumValuepolicy, setMinimumValuepolicy] = useState<DiscountPolicy>(
+  const [quantityPolicy, setQuantityPolicy] = useState<DiscountPolicy>(
+    {} as DiscountPolicy,
+  );
+  const [valuepolicy, setValuepolicy] = useState<DiscountPolicy>(
     {} as DiscountPolicy,
   );
   const [discount, setDiscount] = useState(0);
@@ -60,8 +60,8 @@ const CartProvider: React.FC = ({ children }) => {
       setProducts(responseGetProducts.data);
       responseGetDiscountPolicies.data.map(policy =>
         policy.tipo === 'valor_minimo'
-          ? setMinimumValuepolicy(policy)
-          : setMinimumQuantityPolicy(policy),
+          ? setValuepolicy(policy)
+          : setQuantityPolicy(policy),
       );
     }
 
@@ -69,15 +69,40 @@ const CartProvider: React.FC = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (total >= minimumValuepolicy.valor) {
-      setDiscount((total * minimumValuepolicy.desconto_percentual) / 100);
+    const valueDiscount = (total * valuepolicy.desconto_percentual) / 100;
+    const quantityDiscount = (total * quantityPolicy.desconto_percentual) / 100;
+    const twoDiscountPolicies =
+      total >= valuepolicy.valor && totalItemsQuantity >= quantityPolicy.valor;
+    const valueDiscountPolicy =
+      total >= valuepolicy.valor && totalItemsQuantity < quantityPolicy.valor;
+    const quantityDiscountPolicy =
+      totalItemsQuantity >= quantityPolicy.valor && total < valuepolicy.valor;
+
+    if (twoDiscountPolicies) {
+      if (valueDiscount >= quantityDiscount) {
+        setDiscount(valueDiscount);
+        setTotalWithDiscount(total - discount);
+      } else {
+        setDiscount(quantityDiscount);
+        setTotalWithDiscount(total - discount);
+      }
+    } else if (valueDiscountPolicy) {
+      setDiscount(valueDiscount);
       setTotalWithDiscount(total - discount);
+    } else if (quantityDiscountPolicy) {
+      setDiscount(quantityDiscount);
+      setTotalWithDiscount(total - discount);
+    } else {
+      setDiscount(0);
+      setTotalWithDiscount(0);
     }
   }, [
     total,
     totalItemsQuantity,
-    minimumValuepolicy.valor,
-    minimumValuepolicy.desconto_percentual,
+    valuepolicy.valor,
+    valuepolicy.desconto_percentual,
+    quantityPolicy.desconto_percentual,
+    quantityPolicy.valor,
     discount,
   ]);
 
@@ -149,6 +174,8 @@ const CartProvider: React.FC = ({ children }) => {
     },
     [products],
   );
+
+  // const calculatesTotal = useCallback(() => {}, []);
 
   const value = useMemo(
     () => ({
