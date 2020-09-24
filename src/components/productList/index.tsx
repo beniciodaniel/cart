@@ -23,8 +23,6 @@ const ProductList: React.FC = () => {
     addNote,
   } = useCart();
 
-  console.log(products?.length, 'produtos!');
-
   return (
     <ProductListContainer>
       {products?.map(product => (

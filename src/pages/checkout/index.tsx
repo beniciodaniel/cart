@@ -1,14 +1,18 @@
 import React, { useRef, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
 
+import { useCart } from '../../context/CartContext';
+import api from '../../services/api';
+
 import Header from '../../components/header';
 import Banner from '../../components/banner';
-
 import Input from '../../components/input';
 import Button from '../../components/button';
+import FooterBanner from '../../components/footerBanner';
 
 import { PageContainer, ContentContainer, Container } from './styles';
 
@@ -21,42 +25,71 @@ interface FormData {
 }
 
 const Checkout: React.FC = () => {
+  const { products } = useCart();
+  const history = useHistory();
+
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(async (formData: FormData) => {
-    console.log(formData);
+  const handleSubmit = useCallback(
+    async (formData: FormData) => {
+      try {
+        formRef.current?.setErrors({});
 
-    try {
-      formRef.current?.setErrors({});
+        const schema = Yup.object().shape({
+          enderecoRua: Yup.string().required('Endereço obrigatório'),
+          enderecoNumero: Yup.number()
+            .required('Números obrigatórios')
+            .typeError('Somente números')
+            .positive('Devem ser números positivos')
+            .integer('Números inteiros'),
+          enderecoBairro: Yup.string().required('Bairro obrigatório'),
+          cartaoNumero: Yup.string()
+            .required('Cartão obrigatório')
+            .matches(/^[0-9]{16}$/, 'Deve conter 16 dígitos numéricos'),
+          cartaoCVC: Yup.string()
+            .required('CVC obrigatório')
+            .matches(/^[0-9]/, 'Somente dígitos numéricos')
+            .min(3, '3 ou 4 dígitos')
+            .max(4),
+        });
 
-      const schema = Yup.object().shape({
-        enderecoRua: Yup.string().required('Endereço obrigatório'),
-        enderecoNumero: Yup.string().required('Número obrigatório'),
-        enderecoBairro: Yup.string().required('Bairro obrigatório'),
-        cartaoNumero: Yup.number()
-          .required('Números obrigatórios')
-          .typeError('Somente números')
-          .positive('Devem ser números positivos')
-          .integer('Números inteiros'),
-        cartaoCVC: Yup.number()
-          .required('Números obrigatórios')
-          .typeError('Somente números')
-          .positive('Devem ser números positivos')
-          .integer('Números inteiros'),
-      });
+        await schema.validate(formData, {
+          abortEarly: false,
+        });
 
-      await schema.validate(formData, {
-        abortEarly: false,
-      });
-    } catch (error) {
-      if (error instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(error);
-        // console.log(errors);
+        const data = {
+          itens: products?.map(product => ({
+            id: product.id,
+            quantidade: product.quantidade,
+            observacao: product.observacao ? product.observacao : '',
+          })),
+          endereco: {
+            rua: formData.enderecoRua,
+            numero: formData.enderecoNumero,
+            bairro: formData.enderecoBairro,
+          },
+          cartao: {
+            numero: formData.cartaoNumero,
+            cvc: formData.cartaoCVC,
+          },
+        };
 
-        formRef.current?.setErrors(errors);
+        const response = await api.post('/carrinho', data);
+
+        if (response.status === 201) {
+          alert('Compra efetuada com sucesso! :)');
+          history.push('/');
+        }
+      } catch (error) {
+        if (error instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(error);
+
+          formRef.current?.setErrors(errors);
+        }
       }
-    }
-  }, []);
+    },
+    [products, history],
+  );
 
   return (
     <PageContainer>
@@ -83,6 +116,7 @@ const Checkout: React.FC = () => {
           </Form>
         </Container>
       </ContentContainer>
+      <FooterBanner />
     </PageContainer>
   );
 };

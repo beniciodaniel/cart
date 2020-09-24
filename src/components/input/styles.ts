@@ -48,7 +48,7 @@ export const Container = styled.div<ContainerProps>`
       border: 2px solid #e53935;
     `}
 
-  ${props =>
+    ${props =>
     props.isFocused &&
     css`
       border: 2px solid #35e539;

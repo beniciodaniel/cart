@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const ProductListContainer = styled.div`
   width: 100%;
@@ -110,6 +111,12 @@ export const SubtotalContainer = styled.div`
   button {
     border: 0;
     background: transparent;
+
+    svg {
+      &:hover {
+        color: ${shade(0.2, '#e53935')};
+      }
+    }
   }
 
   svg {
