@@ -16,6 +16,11 @@ export const BannerItemsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  @media screen and (max-width: 932px) {
+    /* height: 100px; */
+    flex-direction: column;
+  }
 `;
 
 export const BannerItem = styled.span`

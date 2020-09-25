@@ -21,6 +21,11 @@ export const TotalContainer = styled.div`
       font-weight: 700;
     }
   }
+
+  @media screen and (max-width: 932px) {
+    margin-top: 30px;
+    width: 100%;
+  }
 `;
 
 export const DiscountContainer = styled.div`

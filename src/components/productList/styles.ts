@@ -47,6 +47,10 @@ export const DescriptionContainer = styled.div`
     font-weight: 500;
     line-height: 20px;
   }
+
+  @media screen and (max-width: 932px) {
+    max-width: 140px;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -96,6 +100,10 @@ export const IncrementDecrementContainer = styled.div`
       background: transparent;
     }
   }
+
+  @media screen and (max-width: 932px) {
+    max-width: 100px;
+  }
 `;
 
 export const SubtotalContainer = styled.div`
@@ -121,5 +129,9 @@ export const SubtotalContainer = styled.div`
 
   svg {
     color: #e53935;
+  }
+
+  @media screen and (max-width: 575px) {
+    max-width: 50px;
   }
 `;

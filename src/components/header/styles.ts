@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { shade } from 'polished';
 
 interface NavSpanProps {
   hasIcon?: boolean;
@@ -16,10 +15,16 @@ export const Header = styled.header`
   background: #fff;
 
   border-bottom: 1px solid #e0e0e0;
+
+  @media screen and (max-width: 932px) {
+    height: 250px;
+  }
 `;
 
 export const Container = styled.div`
-  width: 1200px;
+  max-width: 1200px;
+
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -56,6 +61,10 @@ export const LoginHeader = styled.div`
       margin-left: 32px;
     }
   }
+
+  @media screen and (max-width: 932px) {
+    padding: 20px 20px 15px 20px;
+  }
 `;
 
 export const Logo = styled.div`
@@ -74,6 +83,14 @@ export const NavContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 932px) {
+    flex-direction: column;
+
+    form {
+      margin: 10px 0 10px 0;
+    }
+  }
 `;
 
 export const NavSpan = styled.span`

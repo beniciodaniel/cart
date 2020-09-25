@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const PageContainer = styled.div`
   height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,6 +14,10 @@ export const ContentContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  @media screen and (max-width: 932px) {
+    margin-top: 250px;
+  }
 `;
 
 export const Container = styled.div`
@@ -36,13 +41,23 @@ export const Container = styled.div`
 `;
 
 export const CartContainer = styled.div`
-  display: flex;
-  width: 1200px;
+  max-width: 1200px;
   padding: 0 50px 0 50px;
+  display: flex;
 
   > div:first-child {
     width: 100%;
     margin-right: 70px;
     overflow-y: auto;
+
+    @media screen and (max-width: 932px) {
+      margin-right: 0;
+    }
+  }
+
+  @media screen and (max-width: 932px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;
