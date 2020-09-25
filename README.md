@@ -23,8 +23,8 @@ const { products } = useCart();
 
 ## Requirements
 
-- Use API offered by the company to show the items in the cart
-- Use API offered by the company to understand which discount rules should be applied
+- Use API provided by the company to show the items in the cart
+- Use API provided by the company to understand which discount rules should be applied
 - The user can change the quantity of an item
 - User can remove an item from the cart
 - The user can write a note for each item
