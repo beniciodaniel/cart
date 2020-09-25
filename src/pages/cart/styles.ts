@@ -15,6 +15,8 @@ export const ContentContainer = styled.div`
   align-items: center;
   flex-direction: column;
 
+  height: 100%;
+
   @media screen and (max-width: 932px) {
     margin-top: 250px;
   }
