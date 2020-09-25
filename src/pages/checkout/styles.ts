@@ -6,10 +6,10 @@ export const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  /* max-width: 1200px; */
 `;
 
 export const ContentContainer = styled.div`
+  height: 100%;
   margin-top: 160px;
   display: flex;
   align-items: center;

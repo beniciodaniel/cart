@@ -50,7 +50,7 @@ const Checkout: React.FC = () => {
             .required('CVC obrigatório')
             .matches(/^[0-9]/, 'Somente dígitos numéricos')
             .min(3, '3 ou 4 dígitos')
-            .max(4),
+            .max(4, '3 ou 4 dígitos'),
         });
 
         await schema.validate(formData, {
@@ -115,8 +115,8 @@ const Checkout: React.FC = () => {
             <Button type="submit">Finalizar</Button>
           </Form>
         </Container>
+        <FooterBanner />
       </ContentContainer>
-      <FooterBanner />
     </PageContainer>
   );
 };

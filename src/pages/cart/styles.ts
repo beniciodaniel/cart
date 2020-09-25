@@ -13,9 +13,6 @@ export const ContentContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-
-  overflow: auto;
-  margin-bottom: 80px;
 `;
 
 export const Container = styled.div`

@@ -41,6 +41,7 @@ const Cart: React.FC = () => {
                       <Total />
                     </CartContainer>
                   </Container>
+                  <FooterBanner />
                 </>
               ) : (
                 <Container>
@@ -48,7 +49,6 @@ const Cart: React.FC = () => {
                 </Container>
               )}
             </ContentContainer>
-            <FooterBanner />
           </>
         )}
       </PageContainer>
