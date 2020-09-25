@@ -14,6 +14,10 @@ export const ContentContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  @media screen and (max-width: 932px) {
+    margin-top: 250px;
+  }
 `;
 
 export const Container = styled.div`
