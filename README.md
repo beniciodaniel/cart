@@ -1,6 +1,6 @@
 ## 💻 Technical Challenge (Mercos) by Benício Daniel Hasegawa
 ### ReactJS | Typescript | Styled-Components | Axios | Context API | Unform | Yup
-This repository was created and its code developed to be presented to the company Mercos. The delivery of this technical challenge is part of the selection process to apply for the position of frontend developer in the company.
+This repository was created and its code developed to be presented to the company Mercos. This technical challenge is part of one of the stages of the selection process.
 
 It was decided to use the Typescript template with the create-react-app thinking about the benefits that this would bring to the development of the code.
 
