@@ -18,7 +18,7 @@ In order to use the data globally by the application, the context for the cart w
 
 And to facilitate the use of context information, the custom useCart hook was created. By importing it into any component, it would be enough to use it to obtain the desired states or functions. For example:
 ```
-  const { products } = useCart();
+const { products } = useCart();
 ```
 
 ## Requirements
